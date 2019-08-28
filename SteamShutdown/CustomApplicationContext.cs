@@ -26,6 +26,9 @@ namespace SteamShutdown
 
             Steam.AppInfoChanged += Steam_AppInfoChanged;
             Steam.AppInfoDeleted += Steam_AppInfoDeleted;
+
+            StateMachine.WatchedGames.Clear();
+            StateMachine.WatchedGames.AddRange(Steam.Apps.Where(x => x.IsDownloading));
         }
 
         private void Steam_AppInfoDeleted(object sender, AppInfoEventArgs e)
